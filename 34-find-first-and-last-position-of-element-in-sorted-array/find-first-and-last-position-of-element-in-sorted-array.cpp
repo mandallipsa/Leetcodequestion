@@ -6,28 +6,23 @@ public:
         vector<int> result = {-1, -1};
         int start = findIndex(nums, target, true);
         int end = findIndex(nums, target, false);
-
         if (start <= end) {
             result[0] = start;
             result[1] = end;
         }
-
         return result;
     }
 
 private:
-    int findIndex(vector<int>& nums, int target, bool isFirst) {
+    int findIndex(vector<int>& nums, int target, bool isfirst) {
         int index = -1;
         int start = 0;
         int end = nums.size() - 1;
-
         while (start <= end) {
             int mid = start + (end - start) / 2;
-
             if (nums[mid] == target) {
                 index = mid;
-
-                if (isFirst) {
+                if (isfirst) {
                     end = mid - 1;
                 } else {
                     start = mid + 1;
@@ -38,7 +33,6 @@ private:
                 end = mid - 1;
             }
         }
-
         return index;
     }
 };
