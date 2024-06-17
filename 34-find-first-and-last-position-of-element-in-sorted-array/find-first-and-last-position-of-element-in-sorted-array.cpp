@@ -1,36 +1,47 @@
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int target) {
-        vector<int> result = {-1, -1};
-        int start = findIndex(nums, target, true);
-        int end = findIndex(nums, target, false);
-        if (start <= end) {
-            result[0] = start;
-            result[1] = end;
+int leftmost(vector<int>&nums, int target){
+    int start=0;int end = nums.size()-1;
+    int mid = start+(end-start)/2;
+    int ans1= -1;
+    while(start<=end){
+        if(nums[mid]==target){
+            ans1 = mid;
+            end = mid - 1;
         }
-        return result;
+        else if( nums[mid]<target){
+            start= mid +1;
+        }
+        else{
+            end = mid -1;
+        }
+        mid = start+(end-start)/2;
     }
-
-private:
-    int findIndex(vector<int>& nums, int target, bool isfirst) {
-        int index = -1;
-        int start = 0;
-        int end = nums.size() - 1;
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-            if (nums[mid] == target) {
-                index = mid;
-                if (isfirst) {
-                    end = mid - 1;
-                } else {
-                    start = mid + 1;
-                }
-            } else if (nums[mid] < target) {
-                start = mid + 1;
-            } else {
-                end = mid - 1;
-            }
+    return ans1;
+}
+int rightmost(vector<int>&nums, int target){
+   int start=0;int end = nums.size()-1;
+    int mid = start+(end-start)/2;
+    int ans2= -1;
+    while(start<=end){
+        if(nums[mid]==target){
+            ans2 = mid;
+            start = mid +1;
         }
-        return index;
+        else if( nums[mid]<target){
+            start= mid +1;
+        }
+        else{
+            end = mid -1;
+        }
+        mid = start+(end-start)/2;
+    }
+    return ans2;
+    
+}
+    vector<int> searchRange(vector<int>& nums, int target) {
+      int left =leftmost(nums,target);
+      int right = rightmost(nums,target);
+      return {left,right}; 
     }
 };
