@@ -1,1 +1,1 @@
-<h2>remove-all-adjacent-duplicates-in-string Notes</h2><hr>[ Time taken: 9 m 46 s ]
+<h2>remove-all-adjacent-duplicates-in-string Notes</h2><hr>[ Time taken: 26 m 58 s ]
