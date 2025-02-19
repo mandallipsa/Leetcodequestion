@@ -1,20 +1,18 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-    int freqTable[256]={0};
-    for(int i =0;i<s.size();i++){
-        freqTable[s[i]]++;
+    unordered_map<char,int> hash;
+    for(int i=0;i<s.length();i++){
+        hash[s[i]]++;
     }
-    for(int i =0;i<t.size();i++){
-        freqTable[t[i]]--;
+    for(int i =0;i<t.length();i++){
+        hash[t[i]]--;
     }
-    for(int i=0;i<256;i++){
-        if(freqTable[i]!=0){
+    for(auto i : hash){
+        if(i.second !=0){
             return false;
         }
     }
-  return true;
-
-        
+    return true;
     }
 };
